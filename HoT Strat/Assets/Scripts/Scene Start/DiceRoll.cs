@@ -49,7 +49,6 @@ public class DiceRoll : MonoBehaviour
             Reroll();
 
         }
-
     }
 
     public void HealthGemWagerButton()

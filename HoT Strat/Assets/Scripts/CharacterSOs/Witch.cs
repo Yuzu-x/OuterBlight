@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Witch : ClassBase
+public class Witch : ScriptableObject
 {
-   
+    public string witchName;
+    public int focusPoints = 0;
+    public int maxHealthPoints = 230;
+
+    public int meleeSkill = 4;
+    public int rangeSkill = 4;
+
+    public int basicDamage = 20;
+
     //Default Variable List
 
     public int onTheEdge = 0;

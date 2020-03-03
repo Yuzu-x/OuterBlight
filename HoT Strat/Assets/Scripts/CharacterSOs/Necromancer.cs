@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Necromancer : ClassBase
+public class Necromancer : ScriptableObject
 {
 
 }

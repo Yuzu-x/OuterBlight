@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tamer : ClassBase
+public class Tamer : ScriptableObject
 {
 
 }

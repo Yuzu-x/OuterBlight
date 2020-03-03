@@ -12,8 +12,6 @@ public class PlayerController : CharacterController
     public float moveActual = 6f;
     public float movesMadeThisTurn = 0f;
 
-    public ClassBase myClass;
-
     //inventory
     public bool myInventory;
     public GameObject playerInventory;
@@ -24,9 +22,6 @@ public class PlayerController : CharacterController
     private GameObject[] actSlot;
     private GameObject[] pasSlot;
     public GameObject activeInventorySlotPanel;
-
-    public Button moveButton;
-    public Button runButton;
 
     public float interestTime = 0f;
 
@@ -43,9 +38,6 @@ public class PlayerController : CharacterController
         everyPassiveSlot = 4;
         actSlot = new GameObject[everyActiveSlot];
 
-        moveButton = GameObject.FindGameObjectWithTag("MoveButton").GetComponent<Button>();
-        runButton = GameObject.FindGameObjectWithTag("RunButton").GetComponent<Button>();
-
         for (int i = 0; i < everyActiveSlot; i++)
         {
             actSlot[i] = activeInventorySlotPanel.transform.GetChild(i).gameObject;
@@ -56,15 +48,6 @@ public class PlayerController : CharacterController
     //State Machine
     void Update()
     {
-        if(gameObject.tag == "ActivePlayer")
-        {
-            moveButton.onClick.AddListener(MoveButton);
-            isActive = true;
-        }
-        else if(gameObject.tag != "ActivePlayer")
-        {
-            isActive = false;
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -137,12 +120,33 @@ public class PlayerController : CharacterController
             myTurn = false;
         }
 
-        if(!myTurn)
+        if (!myTurn)
         {
-            moveSelected = false;
-            runSelected = false;
-            gameObject.tag = "Player";
+            return;
         }
+        else
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                Ray charay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit charHit;
+
+                if (Physics.Raycast(charay, out charHit))
+                {
+                    if (charHit.collider.tag == "Player")
+                    {
+                        SwapActivePlayer("ActivePlayer");
+                        charHit.collider.tag = "ActivePlayer";
+                        isActive = true;
+                        activePlayer = GameObject.FindGameObjectWithTag("ActivePlayer");
+
+                    }
+                }
+
+            }
+        }
+
 
         if (isActive)
         {
@@ -266,8 +270,8 @@ public class PlayerController : CharacterController
             {
                 if (moveActionsThisTurn == 0)
                 {
-                    currentState = TurnState.MOVING;
                     movesMadeThisTurn += 1f;
+                    currentState = TurnState.MOVING;
                 }
                 else
                 {

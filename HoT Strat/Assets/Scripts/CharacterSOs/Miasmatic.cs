@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Miasmatic : ClassBase
+public class Miasmatic : ScriptableObject
 {
 
 }
