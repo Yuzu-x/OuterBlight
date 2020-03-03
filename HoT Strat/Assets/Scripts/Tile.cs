@@ -28,6 +28,8 @@ public class Tile : MonoBehaviour
    
     void Update()
     {
+        //controls colours of tiles which can be interacted with
+
         if(current)
         {
             GetComponent<Renderer>().material.color = Color.black;
@@ -50,6 +52,8 @@ public class Tile : MonoBehaviour
 
     public void Reset()
     {
+        //The adjacency list collects all of the tiles that the character will travel across
+
         adjacencyList.Clear();
         current = false;
         target = false;
@@ -63,6 +67,8 @@ public class Tile : MonoBehaviour
 
     public void FindNeighbours(float jumpHeight, Tile target)
     {
+        //Finds all of the accessible tiles around the currently-being-checked tile
+
         Reset();
 
         CheckTile(Vector3.forward, jumpHeight, target);
@@ -74,6 +80,8 @@ public class Tile : MonoBehaviour
     
     public void CheckTile(Vector3 direction, float jumpHeight, Tile target)
     {
+        //The tiles check if they don't have anything on top of them using a Raycast, and then they are added to the adjaceny List
+
         Vector3 halfExtents = new Vector3(0.25f, (1 + jumpHeight) / 2.0f, 0.25f);
         Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
 
