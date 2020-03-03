@@ -16,7 +16,7 @@ public class RecruitMenuTemplate : MonoBehaviour
     void Start()
     {
         recruitClassName.text = recruitClass.myClass;
-        recruitClassSymbol.sprite = recruitClass.myClassSymbol;
+        //recruitClassSymbol.sprite = recruitClass.myClassSymbol;
         recruitName.text = recruitClass.myName;
 
         foreach(GameObject slot in GameObject.FindGameObjectsWithTag("RecPan"))
