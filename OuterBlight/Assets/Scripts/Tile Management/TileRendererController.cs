@@ -10,6 +10,7 @@ public class TileRendererController : MonoBehaviour
 
     public void Start()
     {
+        //Makes a list of all tile objects and removes their renderer so they aren't visible
         findTiles = GameObject.FindGameObjectsWithTag("Tile");
 
 
@@ -22,6 +23,7 @@ public class TileRendererController : MonoBehaviour
 
    public void EnableOrDisableRenderer()
     {
+        //The button click makes the renderers visible so the tiles can be selected
         if (!enabledRenderer)
         {
             foreach (GameObject tile in tileList)
@@ -33,6 +35,7 @@ public class TileRendererController : MonoBehaviour
         }
         else if (enabledRenderer)
         {
+            //Turns the renderer back off when no longer needed
             foreach (GameObject tile in tileList)
             {
                 tile.GetComponent<MeshRenderer>().enabled = false;

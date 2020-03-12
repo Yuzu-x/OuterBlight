@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+
+    //Tile states
     public bool current = false;
     public bool target = false;
     public bool selectable = false;
@@ -28,6 +30,7 @@ public class Tile : MonoBehaviour
 
     void Update()
     {
+        //Colouring tiles based on their state
         if (current)
         {
             GetComponent<Renderer>().material.color = Color.black;
@@ -50,6 +53,7 @@ public class Tile : MonoBehaviour
 
     public void Reset()
     {
+        //Resets tile states before functions
         adjacencyList.Clear();
         current = false;
         target = false;
@@ -65,6 +69,7 @@ public class Tile : MonoBehaviour
     {
         Reset();
 
+        //Creates a list of tiles around the central, selected tile
         CheckTile(Vector3.forward, jumpHeight, target);
         CheckTile(-Vector3.forward, jumpHeight, target);
         CheckTile(Vector3.right, jumpHeight, target);
@@ -74,6 +79,7 @@ public class Tile : MonoBehaviour
 
     public void CheckTile(Vector3 direction, float jumpHeight, Tile target)
     {
+        //Determines whether a tile can be moved to
         Vector3 halfExtents = new Vector3(0.25f, (1 + jumpHeight) / 2.0f, 0.25f);
         Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
 
