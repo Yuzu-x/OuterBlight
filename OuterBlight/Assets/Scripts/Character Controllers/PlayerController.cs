@@ -14,9 +14,9 @@ public class PlayerController : CharacterController
     public float movesMadeThisTurn = 0f;
 
     //inventory
-    public bool myInventory;
-    public GameObject playerInventory;
-    CharacterInventory myItems;
+    //public bool myInventory;
+    //public GameObject playerInventory;
+    //CharacterInventory myItems;
 
     private int everyActiveSlot;
     private int everyPassiveSlot;
@@ -58,25 +58,25 @@ public class PlayerController : CharacterController
 
         MouseOverInteractable();
 
-        if (isActive)
-        {
-            myInventory = true;
+       // if (isActive)
+       // {
+       //     myInventory = true;
+       //
+        //}
+     //   else
+      //  {
+      //      myInventory = false;
+      //  }
 
-        }
-        else
-        {
-            myInventory = false;
-        }
+      //  if (myInventory)
+     //   {
+      //      playerInventory.SetActive(true);
 
-        if (myInventory)
-        {
-            playerInventory.SetActive(true);
-
-        }
-        else
-        {
-            playerInventory.SetActive(false);
-        }
+      //  }
+      //  else
+      //  {
+      //      playerInventory.SetActive(false);
+      //  }
 
 
         Debug.DrawRay(transform.position, transform.forward);
@@ -112,7 +112,7 @@ public class PlayerController : CharacterController
                 break;
         }
 
-        if(TurnManager.playerTurn)
+      /*  if(TurnManager.playerTurn)
         {
             myTurn = true;
         }
@@ -120,7 +120,7 @@ public class PlayerController : CharacterController
         {
             myTurn = false;
         }
-
+        */
         if (!myTurn)
         {
             return;
@@ -311,11 +311,11 @@ public class PlayerController : CharacterController
     {
         if (!isMoving)
         {
-            TurnManager.FinishTurn();
+         //   TurnManager.FinishTurn();
             gameObject.tag = "Player";
             isActive = false;
-            TurnManager.playerTurn = false;
-            TurnManager.enemyTurn = true;
+         //   TurnManager.playerTurn = false;
+          //  TurnManager.enemyTurn = true;
             movesMadeThisTurn = 0f;
         }
     }
@@ -348,7 +348,7 @@ public class PlayerController : CharacterController
             {
                 if (canInteract.collider.tag == "NPC" || canInteract.collider.tag == "Player" || canInteract.collider.tag == "Objective")
                 {
-                    Interact interactable = canInteract.collider.GetComponent<Interact>();
+                //    Interact interactable = canInteract.collider.GetComponent<Interact>();
                     interestTime = interestTime + 1 * Time.deltaTime;
 
                     if (interestTime >= 3)
