@@ -85,7 +85,7 @@ public class EnemyController : CharacterController
             }
         }
     }
-    void CalculatePath()
+    public void CalculatePath()
     {
         Tile targetTile = GetTargetTile(CurrentTarget);
         FindPath(targetTile);
@@ -112,7 +112,7 @@ public class EnemyController : CharacterController
         CurrentTarget = nearest;
     }
 
-    void FindBestTarget()
+    public void FindBestTarget()
     {
         target.Clear();
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");

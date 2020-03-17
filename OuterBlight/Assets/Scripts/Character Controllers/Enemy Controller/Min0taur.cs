@@ -16,7 +16,7 @@ public class Min0taur : EnemyController
 
     void DeeRAM()
     {
-        resourcePoints = resourcePoints - 2f;
+        //resourcePoints = resourcePoints - 2f;
         FindBestTarget();
         CalculatePath();
         FindSelectableTiles();

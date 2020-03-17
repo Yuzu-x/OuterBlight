@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
     {
         if(turnTeam.Count == 0)
         {
-            if (!ZeroTurnBehaviour.turnZero)
+            //if (!ZeroTurnBehaviour.turnZero)
             {
                 InitTeamTurnQueue();
             }
