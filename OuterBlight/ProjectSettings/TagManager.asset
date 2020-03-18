@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
+  - Unemployed
+  - RecruitSlot
+  - TeamRoster
+  - OnTeam
   layers:
   - Default
   - TransparentFX
