@@ -7,15 +7,15 @@ public class EnemyController : CharacterController
     GameObject CurrentTarget;
     int CurrentTargetPriority;
     List<Targets> target;
-    private float enemyCurHealth = 200f;
-    private float enemyMaxHealth = 250f;
+    float enemyCurHealth = 200f;
+    float enemyMaxHealth = 250f;
+    float damage;
 
     void Start()
     {
         myTurn = false;
         currentState = TurnState.WAITING;
         Init();
-
     }
 
 
@@ -23,6 +23,26 @@ public class EnemyController : CharacterController
     {
         Debug.DrawRay(transform.position, transform.forward);
 
+        if (!myTurn)
+        {
+            return;
+        }
+        else
+        {
+            if (currentActionPoints > 0 && moveActionsThisTurn == 0)
+            {
+                moveSelected = true;
+
+                if (!isMoving)
+                {
+                    currentState = TurnState.MOVING;
+                }
+            }
+            else
+            {
+                ShouldEndTurn();
+            }
+        }
         switch (currentState)
         {
             case (TurnState.MOVING):
@@ -53,42 +73,17 @@ public class EnemyController : CharacterController
 
                 break;
         }
-
-        if(TurnManager.playerTurn)
-        {
-            myTurn = false;
-        }
-        else if(TurnManager.enemyTurn)
-        {
-            myTurn = true;
-        }
-
-        if (!myTurn)
-        {
-            return;
-        }
-        else
-        {
-            if (currentActionPoints > 0 && moveActionsThisTurn == 0)
-            {
-
-                moveSelected = true;
-
-                if (!isMoving)
-                {
-                    currentState = TurnState.MOVING;
-                }
-            }
-            else
-            {
-                ShouldEndTurn();
-            }
-        }
     }
     public void CalculatePath()
     {
         Tile targetTile = GetTargetTile(CurrentTarget);
         FindPath(targetTile);
+    }
+
+    public void Attack()
+    {
+        SpendActionPoint(1);
+        CurrentTarget.GetComponent<CharacterController>().TakeDamage(10);
     }
     void FindNearestTarget()
     {
@@ -100,15 +95,12 @@ public class EnemyController : CharacterController
         foreach (GameObject obj in targets)
         {
             float d = Vector3.Distance(transform.position, obj.transform.position);
-
             if (d < distance)
             {
                 distance = d;
                 nearest = obj;
-
             }
         }
-
         CurrentTarget = nearest;
     }
 
@@ -157,20 +149,19 @@ public class EnemyController : CharacterController
     {
         if(currentActionPoints <= 0)
         {
-            TurnManager.FinishTurn();
+            //TurnManager.FinishTurn();
             gameObject.tag = "NPC";
-            TurnManager.enemyTurn = false;
-            TurnManager.playerTurn = true;
+            //TurnManager.enemyTurn = false;
+            //TurnManager.playerTurn = true;
 
         }
 
         if(moveActionsThisTurn > 0)
         {
-            TurnManager.FinishTurn();
+            //TurnManager.FinishTurn();
             gameObject.tag = "NPC";
-            TurnManager.enemyTurn = false;
-            TurnManager.playerTurn = true;
-
+            //TurnManager.enemyTurn = false;
+            //TurnManager.playerTurn = true;
         }
     }
 }

@@ -68,6 +68,7 @@ public class CharacterController : MonoBehaviour
         MOVING,
         CASTING,
         LONGCASTING,
+        ATTACK,
         RUNNING,
         RUSHING,
         WAITING,
