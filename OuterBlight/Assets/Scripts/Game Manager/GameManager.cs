@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(activeScene.buildIndex + 1);
     }
 
+    public void SelectNextScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
