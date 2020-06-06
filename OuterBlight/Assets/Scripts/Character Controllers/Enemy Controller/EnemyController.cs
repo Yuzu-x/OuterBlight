@@ -83,6 +83,7 @@ public class EnemyController : CharacterController
     public void Attack()
     {
         SpendActionPoint(1);
+
         CurrentTarget.GetComponent<CharacterController>().TakeDamage(10);
     }
     void FindNearestTarget()
